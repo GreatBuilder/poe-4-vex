@@ -19,7 +19,7 @@ leftMotor = Motor(Ports.PORT2, GearSetting.RATIO_18_1, True) # Left drivetrain m
 liftMotor = Motor(Ports.PORT3, GearSetting.RATIO_18_1, False) # Lift motor
 inertial_1 = Inertial(Ports.PORT5) # Inertial sensor
 liftArmLocation = Rotation(Ports.PORT6) # Lift arm location sensor
-bumperSwitch = Bumper(Ports.PORT7) # Bumper switch
+bumperSwitch = Bumper(brain.three_wire_port.a) # Bumper switch
 
 # ---------------------------------- Helper Functions ----------------------------------- #
 def bump():
