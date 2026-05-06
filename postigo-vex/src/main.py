@@ -38,6 +38,27 @@ def bump():
     brain.screen.print("Program executed")
     wait(1, SECONDS)
 
+def inertialCalibration():
+    """
+    1. Calibrate the inertial sensor
+    2. Include a 2 second wait time for calibration
+    3. Call this function at the start of the program's execution
+    """
+
+    brain.screen.clear_screen()
+    brain.screen.set_cursor(1,1)
+    brain.screen.print("Calibrating the initerial sensor")
+    brain.screen.set_cursor(2,1)
+    brain.screen.print("Don't move the robot")
+    inertial_1.calibrate()          # Calibrate the intertial sesor
+
+    wait(2, SECONDS)                # Time required to calibrate the inertial sensor
+
+    brain.screen.set_cursor(1,1)
+    brain.screen.clear_line()
+    brain.screen.print("Intertial calibration complete")
+
+
 # ---------------------------------- Main Program ----------------------------------- #
 def main():
     """
@@ -47,4 +68,6 @@ def main():
     bump() # call the bump() function to begin the program
 
 #-------------------------------------------------------------------------------------#
+
+
 main()
