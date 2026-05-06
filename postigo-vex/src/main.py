@@ -1,7 +1,7 @@
 # ---------------------------------------------------------------------------- #
 #                                                                              #
 # 	Module:       main.py                                                      #
-# 	Author:       Admin                                                        #
+# 	Author:       Tudor Barcan, Sebastian Postigo                              #
 # 	Created:      5/4/2026, 2:15:00 PM                                         #
 # 	Description:  V5 project                                                   #
 #                                                                              #
@@ -13,6 +13,38 @@ from vex import *
 # Brain should be defined by default
 brain=Brain()
 
+# ---------------------------------- Robot Configuration ----------------------------------- #
+rightMotor = Motor(Ports.PORT1, GearSetting.RATIO_18_1, False) # Right drivetrain motor
+leftMotor = Motor(Ports.PORT2, GearSetting.RATIO_18_1, True) # Left drivetrain motor
+liftMotor = Motor(Ports.PORT3, GearSetting.RATIO_18_1, False) # Lift motor
+inertial_1 = Inertial(Ports.PORT5) # Inertial sensor
+liftArmLocation = Rotation(Ports.PORT6) # Lift arm location sensor
+bumperSwitch = Bumper(Ports.PORT7) # Bumper switch
 
+# ---------------------------------- Helper Functions ----------------------------------- #
+def bump():
+    """
+    Hold the program's execution until the bumper switch is pressed
+    """
+    while not bumperSwitch.pressing():
+        wait(10, MSEC)
 
-        
+        brain.screen.set_cursor(1,1)
+        brain.screen.print("Press the button to start the program")
+        pass
+
+    brain.screen.clear_line(1)
+    brain.screen.set_cursor(1,1)
+    brain.screen.print("Program executed")
+    wait(1, SECONDS)
+
+# ---------------------------------- Main Program ----------------------------------- #
+def main():
+    """
+    The main() function is the program that is executed by the brain
+    """
+
+    bump() # call the bump() function to begin the program
+
+#-------------------------------------------------------------------------------------#
+main()
