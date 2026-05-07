@@ -58,6 +58,20 @@ def inertialCalibration():
     brain.screen.clear_line()
     brain.screen.print("Intertial calibration complete")
 
+def testInertial():
+    """
+    Test the inertial sensor displaying the heading and rotation data
+    """
+
+    brain.screen.clear_screen()
+    while not bumperSwitch.pressing():
+        wait(10, MSEC)
+        brain.screen.set_cursor(1,1)
+        brain.screen.print("Heading: " + str(inertial_1.heading()) + " degrees")
+        brain.screen.set_cursor(5,1)
+        brain.screen.print("Rotation: " + str(inertial_1.rotation()) + " degrees")
+        brain.screen.set_cursor(6,1)
+        brain.screen.print("Press the button to end the test")
 
 # ---------------------------------- Main Program ----------------------------------- #
 def main():
@@ -65,7 +79,9 @@ def main():
     The main() function is the program that is executed by the brain
     """
 
-    bump() # call the bump() function to begin the program
+    bump()                  # Call the bump() function to begin the program
+    inertialCalibration()   # Calibrate the inertial sensor
+    testInertial()          # Test the inertial sensor
 
 #-------------------------------------------------------------------------------------#
 
