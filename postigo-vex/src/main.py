@@ -132,8 +132,8 @@ def driveStraight(distance, setPoint, motorVelocity):
             # Correct motor velocities
             # If e > 0, (setpoint > rotation) => robot is veering to the left
             # If e < 0, (setpoint < rotation) => robot is veering to the right
-            leftMotor.set_velocity(motorVelocity - correction, PERCENT)
-            rightMotor.set_velocity(motorVelocity + correction, PERCENT)
+            leftMotor.set_velocity(motorVelocity + correction, PERCENT)
+            rightMotor.set_velocity(motorVelocity - correction, PERCENT)
 
             # Spin the motors
             leftMotor.spin(FORWARD)
@@ -150,8 +150,8 @@ def driveStraight(distance, setPoint, motorVelocity):
             # Correct motor velocities
             # If e > 0, (setpoint > rotation) => robot is veering to the left
             # If e < 0, (setpoint < rotation) => robot is veering to the right
-            leftMotor.set_velocity(motorVelocity - correction, PERCENT)
-            rightMotor.set_velocity(motorVelocity + correction, PERCENT)
+            leftMotor.set_velocity(motorVelocity + correction, PERCENT)
+            rightMotor.set_velocity(motorVelocity - correction, PERCENT)
 
             # Spin the motors
             leftMotor.spin(FORWARD)
