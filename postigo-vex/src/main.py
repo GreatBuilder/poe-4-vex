@@ -106,9 +106,9 @@ def driveStraight(distance, setPoint, motorVelocity):
 
     inertial_1.reset_rotation() # Reset the inertial sensor's rotation to zero
 
-    kP = 0.5 # Proportional gain for driving straight
+    kP = 0.3 # Proportional gain for driving straight
              # Used to calculate the correction to mainain course
-             # If to small, correction will occur to slowly
+             # If to small, correction will occur too slowly
              # If too large, overcorrection will occur
              # Determine best value iteratively through testing
             
@@ -142,7 +142,7 @@ def driveStraight(distance, setPoint, motorVelocity):
             driveStraightData(e) # Report data to the brain's screen
         stopMotors() # Stop the motors once the target distance is reached
     else:
-        distance *= -1
+        distanceTicks *= -1
         while leftMotor.position(DEGREES) > distanceTicks:
             e = setPoint - inertial_1.rotation() # Calculate error
             correction = kP * e # Calculate motor velocity correction
@@ -169,11 +169,13 @@ def main():
     The main() function is the program that is executed by the brain
     """
 
-    bump()                  # Call the bump() function to begin the program
-    inertialCalibration()   # Calibrate the inertial sensor
-    testInertial()          # Test the inertial sensor
-
-    driveStraight(90, 0, 50)# Drive straight with the necessary parameters
+    bump() # Call the bump() function to begin the program
+    leftMotor.set_stopping(BRAKE)
+    rightMotor.set_stopping(BRAKE)
+    inertialCalibration() # Calibrate the inertial sensor
+    driveStraight(87.5, 0, 50)# Drive straight with the necessary parameters
+    wait(4, SECONDS) # Wait for 4 seconds
+    driveStraight(87.3, 0, -50) # Drive straight backwards with the necessary parameters
 
 #-------------------------------------------------------------------------------------#
 
